@@ -1,0 +1,41 @@
+{
+  "title": "olE",
+  "number": "12.0",
+  "fileVersion": "0.0",
+  "passingScore": 0.0,
+  "timeLimit": 0,
+  "exams": [
+    {
+      "id": "19e024d7-ffdd-4e06-859f-362795f7b879",
+      "university": null,
+      "examYear": 0,
+      "description": "Exame de Pt",
+      "category": null,
+      "questions": [
+        {
+          "id": "fcfeb9ca-7a39-422b-b3dc-cc6c7337c622",
+          "question": null,
+          "feedback": null,
+          "qtype": "SIGLE",
+          "choices": [
+            {
+              "id": "b893ba08-46a3-45bb-93d2-b11e5483ae48",
+              "label": null,
+              "description": null,
+              "rightChoice": false
+            }
+          ],
+          "totalOfChoices": 4
+        },
+        {
+          "id": "42d6e9d0-5c57-4b1e-a97c-afcaa49a07b7",
+          "question": null,
+          "feedback": null,
+          "qtype": "SIGLE",
+          "choices": [],
+          "totalOfChoices": 4
+        }
+      ]
+    }
+  ]
+}

@@ -53,7 +53,6 @@ public class ExamPaneController implements Initializable, TreeItemController {
     }
 
     public void fillForm(Object root) {
-
         Exam exam = (Exam) root;
 
         tblQuestions.setItems(exam.getQuestions());

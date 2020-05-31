@@ -21,7 +21,6 @@ public class RootPaneController implements Initializable, TreeItemController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
         txtTitle.textProperty().addListener((observable, oldValue, newValue) -> {
             RootObject selectedObject = getSelectedItemObject();
             selectedObject.titleProperty().set(newValue);

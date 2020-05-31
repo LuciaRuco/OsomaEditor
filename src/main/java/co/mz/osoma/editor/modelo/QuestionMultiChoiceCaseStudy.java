@@ -27,10 +27,10 @@ public class QuestionMultiChoiceCaseStudy extends QuestionMultiChoice {
         this.caseOfStudy.set(caseOfStudy);
     }
 
-    @Override
+   /* @Override
     public String toString() {
         return "QuestionMultiChoiceCaseStudy{" +
                 "caseOfStudy=" + caseOfStudy +
                 '}';
-    }
+    }*/
 }

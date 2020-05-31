@@ -31,7 +31,7 @@ public class AddChoiceController implements Initializable, TreeItemController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+System.out.println("teste escolha");
 
         AnchorPane anchorPane = new AnchorPane();
 

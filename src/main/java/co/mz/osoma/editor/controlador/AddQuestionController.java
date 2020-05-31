@@ -117,7 +117,6 @@ public class AddQuestionController implements Initializable, TreeItemController 
     }
     public Question getSelectedItemObject(){
         TreeItem<Object> selectedItem = mainGUIController.getSeletedItem();
-        System.out.println("teste1");
         return (Question) selectedItem.getValue();
     }
 
@@ -136,7 +135,6 @@ public class AddQuestionController implements Initializable, TreeItemController 
 
     @Override
     public void setMainGUIController(MainGUIController mainGUIController) {
-        System.out.println("teste2");
             this.mainGUIController = mainGUIController;
     }
 }

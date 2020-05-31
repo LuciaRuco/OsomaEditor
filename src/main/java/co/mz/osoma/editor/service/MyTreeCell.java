@@ -18,7 +18,7 @@ import co.mz.osoma.editor.controlador.MainGUIController;
  */
 public class MyTreeCell extends TextFieldTreeCell<Object> {
 
-    private ContextMenu questionMenu, examMenu, choiceMenu;
+    private ContextMenu questionMenu, examMenu, choiceMenu, collectionMenu;
     private MainGUIController controller;
 
     public MyTreeCell(MainGUIController mainGUIController) {
@@ -223,6 +223,31 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                 )
                 .build();
 
+        collectionMenu
+                = ContextMenuBuilder.create()
+                .items(
+                        MenuItemBuilder.create()
+                                .text("New Exam")
+                                .onAction(
+                                        new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent arg0) {
+                                                RootObject rootObject = (RootObject) mainGUIController.getSeletedItem().getValue();
+                                                Exam exam = new Exam();
+                                                rootObject.getExams().add(exam);
+                                                TreeItem<Object> node = mainGUIController.makeBranch(exam, mainGUIController.getSeletedItem());
+                                                System.out.println(rootObject.toString());
+                                            }
+                                        }
+                                )
+                                .build()
+                        // other menu item
+
+
+                )
+                .build();
+
+
     }
 
     @Override
@@ -230,10 +255,10 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
         super.updateItem(item, empty);
 
 
-//        if (!empty && getTreeItem().isLeaf()) {
-//            setContextMenu(null);
-//            return;
-//        }
+      if (!empty && item instanceof RootObject) {
+          setContextMenu(collectionMenu);
+          return;
+      }
 
         if(!empty && item instanceof Exam){
             setContextMenu(examMenu);

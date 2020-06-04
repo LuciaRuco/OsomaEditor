@@ -236,7 +236,7 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                                                 Exam exam = new Exam();
                                                 rootObject.getExams().add(exam);
                                                 TreeItem<Object> node = mainGUIController.makeBranch(exam, mainGUIController.getSeletedItem());
-                                                System.out.println(rootObject.toString());
+                                                //System.out.println(rootObject.toString());
                                             }
                                         }
                                 )

@@ -37,7 +37,7 @@ public class AddQuestionController implements Initializable, TreeItemController 
 
         HBox hBox = new HBox();
 
-        System.out.println("teste");
+      //  System.out.println("teste");
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 

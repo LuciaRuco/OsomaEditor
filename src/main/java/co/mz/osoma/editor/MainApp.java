@@ -55,6 +55,7 @@ public class MainApp extends Application {
     }
 
     public void showExams(){
+        String str;
 
         try {
             // Load person overview.

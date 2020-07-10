@@ -52,7 +52,33 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                     }
                 }
         ).build();
-        MenuItem menu2 = MenuItemBuilder.create().text("Multi Choice (Multiple Select)").build();
+        MenuItem menu2 = MenuItemBuilder.create().text("Multi Choice (Multiple Select)").onAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent arg0) {
+                        try {
+
+
+                            QuestionMultiChoice questionMultiChoice = new QuestionMultiChoice();
+                            questionMultiChoice.setQtype(QuestionType.MULTI);
+                            ((Exam)mainGUIController.getSeletedItem().getValue()).getQuestions().add(questionMultiChoice);
+
+                            TreeItem<Object> node = mainGUIController.makeBranch(questionMultiChoice, mainGUIController.getSeletedItem());
+
+                            Helper.totalChoices = 0;
+
+                            for (int i = 0; i<questionMultiChoice.getTotalOfChoices(); i++){
+                                Choice choice = new Choice();
+                                questionMultiChoice.getChoices().add(choice);
+                                mainGUIController.makeBranch(choice, node);
+                            }
+
+                        }catch (Exception e){
+
+                        }
+                    }
+                }
+        ).build();
         MenuItem menu3 = MenuItemBuilder.create().text("Multi Choice (Single Select) With Case of Study").onAction(
                 new EventHandler<ActionEvent>() {
                     @Override

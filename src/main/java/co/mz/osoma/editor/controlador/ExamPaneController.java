@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 public class ExamPaneController implements Initializable, TreeItemController {
 
     private MainGUIController mainGUIController;
-    private Exam exam;
+    //private Exam exam;
 
     @FXML
     private TextField txtTitle;

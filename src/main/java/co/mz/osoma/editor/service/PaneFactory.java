@@ -59,6 +59,19 @@ public class PaneFactory {
             }
         }
 
+
+
+        Pane pane = wrapUpPane();
+        return pane;
+    }
+
+    public Pane preview() throws IOException {
+        loader = new FXMLLoader();
+        try {
+            loader.setLocation(MainApp.class.getResource("vista/RootPane.fxml"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         Pane pane = wrapUpPane();
         return pane;
     }

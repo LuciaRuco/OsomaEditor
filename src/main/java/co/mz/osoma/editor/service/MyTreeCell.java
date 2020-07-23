@@ -113,6 +113,40 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                 .items(
                         MenuBuilder.create().text("New Question").items(menu1, menu2, menu3, menu4).build(),
                         MenuItemBuilder.create()
+                                .text("preview")
+                                .onAction(
+                                        new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent arg0) {
+                                                try {
+                                                    Exam exam = (Exam)mainGUIController.getSeletedItem().getValue();
+                                                    for (Question q: exam.getQuestions()) {
+                                                        System.out.println(q.getQuestion());
+                                                        switch (q.getQtype()){
+                                                            case SIGLE:{
+                                                                QuestionMultiChoice qmc= (QuestionMultiChoice)q;
+                                                                for(Choice c: qmc.getChoices()){
+                                                                    System.out.print(" "+c.getDescription()+", ");
+                                                                }
+                                                            }break;
+                                                            case SIGLECASESTUDY:{
+                                                                QuestionMultiChoiceCaseStudy qmccs= (QuestionMultiChoiceCaseStudy)q;
+                                                                for(Choice c: qmccs.getChoices()){
+                                                                    System.out.print(" "+c.getDescription()+", ");
+                                                                }
+                                                            }break;
+
+                                                        }
+
+                                                    }
+
+                                                }catch (Exception e){
+
+                                                }
+                                            }
+                                        }
+                                ).build(),
+                        MenuItemBuilder.create()
                                 .text("Delete")
                                 .onAction(
                                         new EventHandler<ActionEvent>() {

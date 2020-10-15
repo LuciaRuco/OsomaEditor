@@ -42,6 +42,14 @@
             <version>1.0.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/javax.help/javahelp -->
+        <dependency>
+            <groupId>javax.help</groupId>
+            <artifactId>javahelp</artifactId>
+            <version>2.0.05</version>
+        </dependency>
+
+
 
     </dependencies>
 

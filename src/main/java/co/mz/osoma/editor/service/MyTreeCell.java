@@ -18,7 +18,7 @@ import co.mz.osoma.editor.controlador.MainGUIController;
  */
 public class MyTreeCell extends TextFieldTreeCell<Object> {
 
-    private ContextMenu questionMenu, examMenu, choiceMenu, collectionMenu;
+    private ContextMenu questionMenu, examMenu, choiceMenu, collectionMenu, previewMenu;
     private MainGUIController controller;
 
     public MyTreeCell(MainGUIController mainGUIController) {
@@ -276,8 +276,19 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                                             }
                                         }
                                 )
-                                .build()
+                                .build(),
                         // other menu item
+
+                        MenuItemBuilder.create()
+                                .text("Previsuaizar")
+                                .onAction(
+                                        new EventHandler<ActionEvent>() {
+                                            @Override
+                                            public void handle(ActionEvent arg0) {
+                                            }
+                                        }
+                                )
+                                .build()
 
 
                 )
@@ -292,11 +303,7 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                                         new EventHandler<ActionEvent>() {
                                             @Override
                                             public void handle(ActionEvent arg0) {
-                                                RootObject rootObject = (RootObject) mainGUIController.getSeletedItem().getValue();
-                                                Exam exam = new Exam();
-                                                rootObject.getExams().add(exam);
-                                                TreeItem<Object> node = mainGUIController.makeBranch(exam, mainGUIController.getSeletedItem());
-                                                //System.out.println(rootObject.toString());
+
                                             }
                                         }
                                 )
@@ -336,4 +343,5 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
         }
 //        setContextMenu(questionMenu);
     }
+
 }

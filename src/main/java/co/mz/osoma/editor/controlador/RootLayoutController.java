@@ -86,16 +86,25 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     public void handleSave() {
+
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text file (*.json)", "*.json"));
         fileChooser.setTitle("Save File");
         File file = fileChooser.showSaveDialog(this.primaryStage);
+
 
 
         if (file != null) {
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
                 RootObject rootObject = (RootObject) mainGUIController.getRootNode().getValue();
+
                 objectMapper.writeValue(file, rootObject);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText(file.getName() + " successfully created");
+                alert.show();
+
             } catch (JsonProcessingException ex) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(ex.getMessage());
@@ -104,12 +113,12 @@ public class RootLayoutController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(e.getMessage());
                 alert.show();
-            } finally {
+            } /*finally {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText(file.getName() + " successfully created");
-                alert.show();
+                alert.show();*/
             }
-        }
+
 
     }
 

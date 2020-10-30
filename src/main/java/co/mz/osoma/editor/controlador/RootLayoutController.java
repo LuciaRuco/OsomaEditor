@@ -86,39 +86,43 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     public void handleSave() {
+        Exam exame=new Exam();
+        int contaExame=exame.getCount();
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text file (*.json)", "*.json"));
-        fileChooser.setTitle("Save File");
-        File file = fileChooser.showSaveDialog(this.primaryStage);
+        if(contaExame==1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("Recusado!!!\nCrie um exame antes de Salvar.");
+            alert.show();
+        } else{
 
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text file (*.json)", "*.json"));
+                fileChooser.setTitle("Save File");
+                File file = fileChooser.showSaveDialog(this.primaryStage);
 
+                if (file != null) {
+                    try {
+                        ObjectMapper objectMapper = new ObjectMapper();
+                        RootObject rootObject = (RootObject) mainGUIController.getRootNode().getValue();
+                        objectMapper.writeValue(file, rootObject);
 
-        if (file != null) {
-            try {
-                ObjectMapper objectMapper = new ObjectMapper();
-                RootObject rootObject = (RootObject) mainGUIController.getRootNode().getValue();
+                    } catch (JsonProcessingException ex) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(ex.getMessage());
+                        alert.show();
 
-                objectMapper.writeValue(file, rootObject);
+                    } catch (IOException e) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText(e.getMessage());
+                        alert.show();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText(file.getName() + " successfully created");
-                alert.show();
-
-            } catch (JsonProcessingException ex) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText(ex.getMessage());
-                alert.show();
-            } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText(e.getMessage());
-                alert.show();
-            } /*finally {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText(file.getName() + " successfully created");
-                alert.show();*/
-            }
-
+                    } finally {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setContentText(file.getName() + " successfully created");
+                        alert.show();
+                    }
+                }
+        }
 
     }
 

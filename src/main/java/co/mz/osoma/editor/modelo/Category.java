@@ -13,7 +13,7 @@ public class Category {
     public int getId() {
         return id.get();
     }
-
+    OsomaEditor
     public IntegerProperty idProperty() {
         return id;
     }

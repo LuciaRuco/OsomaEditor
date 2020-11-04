@@ -46,7 +46,7 @@ public class RootLayoutController implements Initializable {
 
 
     @FXML
-    public void handleOpen() {
+    public void handleOpen() throws IOException {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
@@ -79,6 +79,13 @@ public class RootLayoutController implements Initializable {
                         }
                     }
                 });
+            }else{
+                ObjectMapper mapper = new ObjectMapper();
+                SimpleModule module = new SimpleModule("CustomRootObjectDeserializer", new Version(1, 0, 0, null, null, null));
+                module.addDeserializer(RootObject.class, new CustomRootObjectDeserializer());
+                mapper.registerModule(module);
+                RootObject rootObject = mapper.readValue(file, RootObject.class);
+                mainGUIController.populateTree(rootObject);
             }
         }
 

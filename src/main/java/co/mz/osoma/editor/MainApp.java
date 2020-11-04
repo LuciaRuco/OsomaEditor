@@ -17,12 +17,7 @@ public class MainApp extends Application {
     private RootLayoutController rootLayoutController;
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-//        primaryStage.setDescription("Hello World");
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.show();
-
+    public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Exames");
 
@@ -39,7 +34,7 @@ public class MainApp extends Application {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("vista/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            rootLayout =  loader.load();
 
             rootLayoutController = loader.getController();
             rootLayoutController.setPrimaryStage(primaryStage);
@@ -55,13 +50,12 @@ public class MainApp extends Application {
     }
 
     public void showExams(){
-        String str;
 
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("vista/MainGUI.fxml"));
-            BorderPane examsPanel = (BorderPane) loader.load();
+            BorderPane examsPanel = loader.load();
 
             // Set person overview into the center of root layout.
             rootLayout.setCenter(examsPanel);

@@ -1,7 +1,5 @@
 package co.mz.osoma.editor.controlador;
 
-import co.mz.osoma.editor.modelo.QuestionMultiChoiceCaseStudy;
-import co.mz.osoma.editor.modelo.QuestionType;
 import co.mz.osoma.editor.service.TreeItemController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,10 +21,8 @@ public class AddQuestionController implements Initializable, TreeItemController 
     @FXML
     private Pane mainPane;
 
-    private HTMLEditor taText = new HTMLEditor();
     private HTMLEditor taQuestion = new HTMLEditor();
     private  HTMLEditor taExplanation = new HTMLEditor();
-    Label cLabel=new Label("case Of Study ");
 
     private MainGUIController mainGUIController;
 
@@ -37,7 +33,7 @@ public class AddQuestionController implements Initializable, TreeItemController 
 
         HBox hBox = new HBox();
 
-      //  System.out.println("teste");
+
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
@@ -52,20 +48,6 @@ public class AddQuestionController implements Initializable, TreeItemController 
         vBoxPrincipal.setSpacing(10);
         vBoxPrincipal.setPadding(new Insets(20));
 
-
-        taText.setPrefHeight(0);
-        taText.addEventHandler(InputEvent.ANY, new EventHandler<InputEvent>() {
-            @Override
-            public void handle(InputEvent event) {
-                Question  selectedItemObject = getSelectedItemObject();
-                selectedItemObject.questionProperty().set(taText.getHtmlText());
-            }
-        });
-
-        vBoxPrincipal.getChildren().add(cLabel);
-        vBoxPrincipal.getChildren().add(taText);
-        taText.setVisible(false);
-        cLabel.setVisible(false);
         Label qLabel=new Label("Question ");
         taQuestion.setPrefHeight(150);
 
@@ -81,7 +63,7 @@ public class AddQuestionController implements Initializable, TreeItemController 
         vBoxPrincipal.getChildren().add(qLabel);
         vBoxPrincipal.getChildren().add(taQuestion);
 
-        Label explainLabel=new Label("explain 1 ");
+        Label explainLabel=new Label("explain ");
         vBoxPrincipal.getChildren().add(explainLabel);
 
 
@@ -120,21 +102,22 @@ public class AddQuestionController implements Initializable, TreeItemController 
         return (Question) selectedItem.getValue();
     }
 
-    public void fillForm(Object object){
-        Question question = (Question) object;
-            if ((question.getQtype()).equals(QuestionType.SIGLECASESTUDY)){
-                taQuestion.setHtmlText(question.getQuestion());
-                taExplanation.setHtmlText(question.getFeedback());
-                taText.setVisible(true);
-                cLabel.setVisible(true);
-                taText.setPrefHeight(100);
-                taText.setHtmlText(((QuestionMultiChoiceCaseStudy)question).getCaseOfStudy());
-            }
+
+    @Override
+    public void fillForm(Object object) {
+        try{
+            Question question = (Question) object;
+            taQuestion.setHtmlText(question.getQuestion());
+            taExplanation.setHtmlText(question.getFeedback());
+
+        }catch (Exception e){
+
+        }
 
     }
 
     @Override
     public void setMainGUIController(MainGUIController mainGUIController) {
-            this.mainGUIController = mainGUIController;
+        this.mainGUIController = mainGUIController;
     }
 }

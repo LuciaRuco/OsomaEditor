@@ -8,10 +8,26 @@ package co.mz.osoma.editor.service;
 import co.mz.osoma.editor.modelo.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeCell;
 
 import co.mz.osoma.editor.controlador.MainGUIController;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.web.HTMLEditor;
+import javafx.scene.web.WebView;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import org.jsoup.Jsoup;
 
 /**
  * @author Lenovo
@@ -118,7 +134,50 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                                         new EventHandler<ActionEvent>() {
                                             @Override
                                             public void handle(ActionEvent arg0) {
-                                                try {
+                                                Rectangle2D r = Screen.getPrimary().getBounds();
+                                                VBox root = new VBox();
+                                                root.setPadding(new Insets(8, 8, 8, 8));
+                                                root.setSpacing(5);
+                                                root.setAlignment(Pos.TOP_LEFT);
+//adicionar o exame no painel
+                                                Exam exam = (Exam)mainGUIController.getSeletedItem().getValue();
+                                                //StackPane secondaryLayout = new StackPane();
+                                                //int linha = 0;
+                                                for(Question q:exam.getQuestions()){
+                                                    Text ord = new Text();
+                                                    Text  questao = new Text();
+                                                    Text  esplicacao = new Text();
+                                                    ord.setText(q.getItem().toString());
+                                                    ord.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.ITALIC,30));
+                                                    questao.setText("Pergunta: "+Jsoup.parse(q.getQuestion()).text());
+                                                    esplicacao.setText("Explicaca: "+Jsoup.parse(q.feedbackProperty().getValue()).text());
+                                                    questao.setFont(Font.font("Verdana", FontWeight.BOLD, 30));
+                                                    esplicacao.setFont(Font.font("Verdana", FontPosture.ITALIC, 30));
+                                                    root.getChildren().addAll(ord,questao,esplicacao);
+                                                    char i='A';
+                                                    for(Choice c : ((QuestionMultiChoice)q).getChoices()){
+                                                        Text choice = new Text();
+                                                        choice.setText(i+") "+Jsoup.parse(c.getDescription()).text());
+                                                        choice.setFont(Font.font("Verdana", FontPosture.ITALIC, 20));
+                                                        root.getChildren().add(choice);
+                                                        i++;
+                                                    }
+                                                }
+
+                                                Scene secondScene = new Scene(root, r.getWidth(), r.getHeight());
+
+// New window (Stage)
+                                                Stage newWindow = new Stage();//importante
+                                                newWindow.setTitle("Exame Preview");
+                                                newWindow.setScene(secondScene);
+
+// Set position of second window, related to primary window.
+                                                newWindow.setX(0);
+                                                newWindow.setY(0);
+
+                                                newWindow.show();
+
+                                                /*try {
                                                     Exam exam = (Exam)mainGUIController.getSeletedItem().getValue();
                                                     for (Question q: exam.getQuestions()) {
                                                         System.out.println(q.getQuestion());
@@ -142,7 +201,7 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
 
                                                 }catch (Exception e){
 
-                                                }
+                                                }*/
                                             }
                                         }
                                 ).build(),

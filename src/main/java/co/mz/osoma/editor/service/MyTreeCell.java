@@ -6,6 +6,8 @@
 package co.mz.osoma.editor.service;
 
 import co.mz.osoma.editor.modelo.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -362,6 +364,12 @@ public class MyTreeCell extends TextFieldTreeCell<Object> {
                                         new EventHandler<ActionEvent>() {
                                             @Override
                                             public void handle(ActionEvent arg0) {
+                                                Exam novo= new Exam();
+                                                ObservableList<Exam> exams = FXCollections.observableArrayList();
+                                                exams.add(novo);
+                                                RootObject rootObject = new RootObject(exams);
+                                                TreeItem<Object> node = mainGUIController.makeBranch(novo, mainGUIController.getSeletedItem());
+
 
                                             }
                                         }

@@ -4,6 +4,7 @@ import co.mz.osoma.editor.service.Helper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public abstract class Question implements NodeObject{
     private StringProperty id = new SimpleStringProperty();
     protected StringProperty question = new SimpleStringProperty();
     protected StringProperty feedback = new SimpleStringProperty();
+    private String quest;
     protected QuestionType qtype;
     protected int count;
 
@@ -49,8 +51,13 @@ public abstract class Question implements NodeObject{
         this.qtype = qtype;
     }
 
+    public String getQuest() {
+        return quest;
+    }
 
-
+    public void setQuest(String quest) {
+        this.quest = quest;
+    }
 
     public Question(String question, String feedback, QuestionType qtype) {
         this.question = new SimpleStringProperty(question);

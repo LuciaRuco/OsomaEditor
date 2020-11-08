@@ -97,7 +97,7 @@ public class RootLayoutController implements Initializable {
         int contaExame=exame.getCount();
 
         if(contaExame==1) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Recusado!!!\nCrie um exame antes de Salvar.");
             alert.show();
         } else{

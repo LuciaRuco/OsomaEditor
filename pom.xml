@@ -56,19 +56,31 @@
     <build>
         <finalName>Osoma-Editor</finalName>
         <plugins>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
                 <configuration>
                     <archive>
+                        <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>co.mz.osoma.editor.MainApp</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <mode>development</mode>
+                            <url>${project.url}</url>
+                            <key>value</key>
+                        </manifestEntries>
                     </archive>
                 </configuration>
             </plugin>
+
+
+
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

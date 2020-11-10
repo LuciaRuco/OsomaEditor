@@ -67,6 +67,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
+                            <mainClass>co.mz.osoma.editor.MainApp</mainClass>
                         </manifest>
                         <manifestEntries>
                             <mode>development</mode>

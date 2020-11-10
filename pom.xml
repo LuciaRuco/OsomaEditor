@@ -82,7 +82,7 @@
                          QUE ELE CONTÉM AS DEPENDÊNCIAS  -->
 
                     <descriptorRefs>
-                        <descriptorRef>executavel</descriptorRef>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                 </configuration>
                 <executions>

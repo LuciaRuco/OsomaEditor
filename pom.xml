@@ -62,19 +62,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <addclasspath>true</addclasspath>
-                            <mainclass>co.mz.osoma.editor.MainApp</mainclass>
-                        </manifest>
-                    </archive>
+                    <descriptors>
+                        <descriptor>co.mz.osoma.editor.MainApp</descriptor>
+                    </descriptors>
                 </configuration>
             </plugin>
-
 
 
 

@@ -98,6 +98,7 @@ public class AddChoiceController implements Initializable, TreeItemController {
     public Choice getSelectedItemObject(){
         TreeItem<Object> selectedItem = mainGUIController.getSeletedItem();
         return (Choice) selectedItem.getValue();
+
     }
     public void fillForm(Object object){
         Choice choice = (Choice) object;
